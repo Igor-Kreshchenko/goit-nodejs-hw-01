@@ -52,9 +52,9 @@ async function addContact(name, email, phone) {
     const contactsFromDb = await readFile(contactsPath, "utf8");
     const contacts = JSON.parse(contactsFromDb);
     const id = contacts[contacts.length - 1].id + 1;
-
     const newContact = { id, name, email, phone };
     const updatedContacts = [...contacts, newContact];
+
     await writeFile(contactsPath, JSON.stringify(updatedContacts));
     console.table(updatedContacts);
   } catch (error) {
