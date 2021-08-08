@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Igor-Kreshchenko/goit-nodejs-hw-01#readme",
   "dependencies": {
-    "commander": "^8.1.0"
+    "commander": "^8.1.0",
+    "nodemon": "^2.0.12"
   }
 }

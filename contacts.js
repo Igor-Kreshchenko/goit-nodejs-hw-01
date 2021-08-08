@@ -5,7 +5,7 @@ const util = require("util");
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
-const contactsPath = path.join("db", "contacts.json");
+const contactsPath = path.join(__dirname, "db", "contacts.json");
 
 async function listContacts() {
   try {
@@ -42,8 +42,8 @@ async function removeContact(contactId) {
       (contact) => contact.id !== Number(contactId)
     );
 
+    await writeFile(contactsPath, JSON.stringify(filteredContacts));
     console.table(filteredContacts);
-    return await writeFile(contactsPath, JSON.stringify(filteredContacts));
   } catch (error) {
     console.log(error.message);
   }
@@ -57,8 +57,8 @@ async function addContact(name, email, phone) {
     const newContact = { id, name, email, phone };
     const updatedContacts = [...contacts, newContact];
 
+    await writeFile(contactsPath, JSON.stringify(updatedContacts));
     console.table(updatedContacts);
-    return await writeFile(contactsPath, JSON.stringify(updatedContacts));
   } catch (error) {
     console.log(error.message);
   }
